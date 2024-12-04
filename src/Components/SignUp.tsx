@@ -12,7 +12,7 @@ export function SignUp() {
     const toastid=toast("Loading ....");
   
     try {
-      const response = await axios.post("http://localhost:3000/Signup", {
+      const response = await axios.post(`${import.meta.env.VITE_baseurl}/Signup`, {
         email: Email.current?.value,
         user: User.current?.value,
         password: Password.current?.value,

@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb";
+
 import { Close } from "../icons/Close";
 import { useRecoilState } from "recoil";
 import { Share } from "../Global/Global";
@@ -21,7 +21,7 @@ export function ShareModal({
   const setvisible = async (visible) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/content/share",
+        `${import.meta.env.VITE_baseurl}/content/share`,
         {
           share: visible,
         },

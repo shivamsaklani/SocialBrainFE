@@ -14,6 +14,7 @@
     "@types/recoil": "^0.0.1",
     "axios": "^1.7.8",
     "classnames": "^2.5.1",
+    "dotenv": "^16.4.7",
     "fa-icons": "^0.2.0",
     "faicon": "^1.1.0",
     "framer-motion": "^11.11.17",

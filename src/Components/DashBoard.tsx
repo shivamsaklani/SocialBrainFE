@@ -32,7 +32,7 @@ export function DashBoard() {
   const [Brain, setBrain] = useRecoilState(DataContent);
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get("http://localhost:3000/content/get", {
+      const response = await axios.get(`${import.meta.env.VITE_baseurl}/content/get`, {
         headers: {
           authorization: localStorage.getItem("token"),
         },

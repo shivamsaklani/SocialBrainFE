@@ -20,7 +20,7 @@ export function SharePage(){
     useEffect(() => {
         const fetch = async () => {
           try {
-            const response = await axios.get("http://localhost:3000/content/share/" + sharelink);
+            const response = await axios.get(`${import.meta.env.VITE_baseurl}/content/share/` + sharelink);
             console.log(response.data.content);
             setdata(response.data.content);
           } catch (error) {

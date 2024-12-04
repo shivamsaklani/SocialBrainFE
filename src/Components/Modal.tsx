@@ -17,7 +17,7 @@ export function Modal({open,onClose}){
 
     const AddContent= async () =>{
       try {
-         const response= await axios.post("http://localhost:3000/content/put",{
+         const response= await axios.post(`${import.meta.env.VITE_baseurl}/content/put`,{
               
                   "title":Title.current?.value,
                   "tags":[],

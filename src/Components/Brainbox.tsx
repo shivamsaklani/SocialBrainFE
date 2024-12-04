@@ -6,8 +6,6 @@ import { Youtube } from "../icons/Youtube";
 import { Twitter } from "../icons/Twiter";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useRecoilValue } from "recoil";
-import { DataContent } from "../Global/Global";
 interface BrainProps {
     title:string,
     link:string,
@@ -19,7 +17,7 @@ export function Brainbox({title ,link,description ,type,deleteid}:BrainProps){
 
   const Del =async ()=>{
   try {
-     const response= await axios.delete("http://localhost:3000/content/delete",{
+     const response= await axios.delete(`${import.meta.env.VITE_baseurl}/content/delete`,{
         data:{
            contentId:deleteid
         },
