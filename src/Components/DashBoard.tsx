@@ -7,7 +7,7 @@ import { Sidebar } from "./Sidebar";
 import { ShareIcon } from "../icons/Share";
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { create, DataContent } from "../Global/Global";
 import { ObjectId } from "mongodb";
 import { ShareModal } from "./ShareModal";
@@ -20,8 +20,6 @@ export function DashBoard() {
 
   const showlogout= ()=>{
     setlogout(true);
-   
-
   }
 
   const closelogout =()=>{
@@ -30,6 +28,7 @@ export function DashBoard() {
   }
 
   const [Brain, setBrain] = useRecoilState(DataContent);
+  const data=useRecoilValue(DataContent);
   useEffect(() => {
     const fetch = async () => {
       const response = await axios.get(`${import.meta.env.VITE_baseurl}/content/get`, {
@@ -41,7 +40,9 @@ export function DashBoard() {
     };
 
     fetch();
-  }, []);
+
+
+  }, [data]);
 
   return (
     <>
@@ -84,7 +85,7 @@ export function DashBoard() {
           </div>
 
           <div className="flex justify-center items-center">
-            <ContentBox Brain={Brain} />
+            <ContentBox Brain={Brain}/>
           </div>
         </div>
       </div>
@@ -97,6 +98,7 @@ export interface BrainItem {
   description: string;
   link: string;
   _id: ObjectId;
+
 }
 export function ContentBox({ Brain }: { Brain: BrainItem[] }) {
   return (
@@ -108,6 +110,8 @@ export function ContentBox({ Brain }: { Brain: BrainItem[] }) {
           description={item.description}
           link={item.link}
           deleteid={item._id}
+       
+        
         />
       ))}
     </div>

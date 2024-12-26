@@ -16,13 +16,24 @@ export function SharePage(){
     const sharelink= location.pathname.replace("/content/share/","");
 
     const [data,setdata]=useState<BrainItem[]>([]);
+    const [user,setuser]=useState({});
+
 
     useEffect(() => {
         const fetch = async () => {
           try {
             const response = await axios.get(`${import.meta.env.VITE_baseurl}/content/share/` + sharelink);
-            console.log(response.data.content);
-            setdata(response.data.content);
+            const data =response.data.content;
+            setdata(data);
+           
+            
+            const user_response= await axios.get(`${import.meta.env.VITE_baseurl}/user/details/`+sharelink);
+            setuser(user_response.data.response);
+         
+            
+           
+            
+          
           } catch (error) {
             console.error("Error fetching data:", error);
           }
@@ -38,13 +49,16 @@ export function SharePage(){
     <div className="flex justify-around  font-subtitle text-white items-center h-1/4 w-full bg-primary">
       <Brand/>
       <div>
-        User Details
+        <p className="flex justify-start items-start flex-col">
+          <span>{user.name}</span>
+          <span>{user.email}</span>
+        </p>
       </div>
     </div>
     <div className="flex h-full py-5 w-full items-center justify-center">
         
 
-        <ContentBox Brain={data} />
+        <ContentBox  Brain={data}  />
 
     </div>
 

@@ -11,6 +11,7 @@ interface BrainProps {
     link:string,
     description:string,
     deleteid:string,
+   
     type: "Linkedin" | "Youtube"| "Article" | "Twitter",
 }
 export function Brainbox({title ,link,description ,type,deleteid}:BrainProps){
@@ -53,10 +54,11 @@ export function Brainbox({title ,link,description ,type,deleteid}:BrainProps){
 
                 </span>
                 <span className="flex">
-                <div className="cursor-pointer px-3 text-red-500">
+               <div className="cursor-pointer px-3 text-red-500">
                     <button onClick={Del} ><Delete/></button>
 
                   </div>
+               
                   <div className=" px-3 cursor-pointer text-primary ">
                     <ShareIcon/>
                   </div>

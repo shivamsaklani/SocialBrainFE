@@ -3,7 +3,7 @@ import { Close } from "../icons/Close";
 import { useRecoilState } from "recoil";
 import { Share } from "../Global/Global";
 import { CustomButton } from "./Button";
-import { useRef } from "react";
+import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Copy } from "../icons/copy";
@@ -15,12 +15,12 @@ export function ShareModal({
 
   onclose: () => void;
 }) {
-  const Link = useRef<HTMLInputElement>(null);
+  const [showlink,setlink]=useState();
   const [isPublic, setPublic] = useRecoilState(Share);
 
   const setvisible = async (visible) => {
     try {
-      const response = await axios.post(
+      const response= await axios.post(
         `${import.meta.env.VITE_baseurl}/content/share`,
         {
           share: visible,
@@ -31,6 +31,7 @@ export function ShareModal({
           },
         }
       );
+    setlink(`${import.meta.env.VITE_frontendurl}`+ response.data.link);
     } catch (e) {
       toast.error("Error:" + e);
     }
@@ -45,6 +46,16 @@ export function ShareModal({
     setvisible(true);
     setPublic(true);
   };
+
+  const copytext =async()=>{
+   try{
+    await window.navigator.clipboard.writeText(showlink);
+
+   }
+   catch(e){
+    console.log(e)
+   }
+  }
 
  
 
@@ -71,12 +82,12 @@ export function ShareModal({
               </div>
               <div className="flex flex-row gap-3">
                 <input
-                  ref={Link}
+                 
                   disabled
-                  value={Link.current?.value}
+                  value={showlink}
                   className="border px-3 rounded shadow-md h-10"
                 />
-                <CustomButton children="Copy" icon={<Copy />} primary rounded />
+                <CustomButton children="Copy" Click={copytext} icon={<Copy />} primary rounded />
               </div>
               {isPublic ? (
                 <CustomButton
