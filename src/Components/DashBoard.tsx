@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Plus } from "../icons/Plus";
-import { Brainbox } from "./Brainbox";
+import { Brainbox, BrainboxType } from "./Brainbox";
 import { CustomButton } from "./Button";
 import { Modal } from "./Modal";
 import { Sidebar } from "./Sidebar";
@@ -31,7 +31,7 @@ export function DashBoard() {
   const data=useRecoilValue(DataContent);
   useEffect(() => {
     const fetch = async () => {
-      const response = await axios.get(`${import.meta.env.VITE_baseurl}/content/get`, {
+      const response= await axios.get<any>(`${import.meta.env.VITE_baseurl}/content/get`, {
         headers: {
           authorization: localStorage.getItem("token"),
         },
@@ -105,7 +105,7 @@ export function ContentBox({ Brain }: { Brain: BrainItem[] }) {
     <div className="grid  md:grid-cols-3 place-items-center grid-cols-1 w-full  h-full px-3  gap-3 ">
       {Brain.map((item) => (
         <Brainbox
-          type={item.type}
+          type={item.type as BrainboxType}
           title={item.title}
           description={item.description}
           link={item.link}

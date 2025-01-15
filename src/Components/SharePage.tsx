@@ -11,23 +11,27 @@ interface BrainItem {
     link: string;
     _id:ObjectId , 
   }
+  type usertype={
+    name:string,
+    email:string
+  }
 export function SharePage(){
     const location = useLocation();
     const sharelink= location.pathname.replace("/content/share/","");
 
     const [data,setdata]=useState<BrainItem[]>([]);
-    const [user,setuser]=useState({});
+    const [user,setuser]=useState({} as usertype);
 
 
     useEffect(() => {
         const fetch = async () => {
           try {
-            const response = await axios.get(`${import.meta.env.VITE_baseurl}/content/share/` + sharelink);
+            const response = await axios.get<any>(`${import.meta.env.VITE_baseurl}/content/share/` + sharelink);
             const data =response.data.content;
             setdata(data);
            
             
-            const user_response= await axios.get(`${import.meta.env.VITE_baseurl}/user/details/`+sharelink);
+            const user_response= await axios.get<any>(`${import.meta.env.VITE_baseurl}/user/details/`+sharelink);
             setuser(user_response.data.response);
          
             

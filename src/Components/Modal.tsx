@@ -5,15 +5,17 @@ import { CustomButton } from "./Button";
 import { Inputbox } from "./Inputbox";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { CustomTags } from "./CustomTags";
-import { useRecoilState } from "recoil";
 import { create } from "../Global/Global";
-export function Modal({open,onClose}){
+import { useSetRecoilState } from "recoil";
+export function Modal({open,onClose}:{
+  open:boolean,
+  onClose:VoidFunction
+}){
     const Title =useRef<HTMLInputElement>(null);
     const Link =useRef<HTMLInputElement>(null);
     const Description= useRef<HTMLTextAreaElement>(null);
     const Type =useRef<HTMLSelectElement>(null);
-    const [modal,setmodal]=useRecoilState(create);
+    const setmodal=useSetRecoilState(create);
 
     const AddContent= async () =>{
       try {
@@ -35,6 +37,7 @@ export function Modal({open,onClose}){
           });
           if(response.status ===201){
             toast.success("Content Added ");
+            
             setmodal(false);
 
 
@@ -97,15 +100,7 @@ export function Modal({open,onClose}){
      </div>
 
       {/* Tags */}
-      <div className="flex flex-wrap py-3 gap-3 justify-center items-center">
-        <CustomTags tag="Computer" />
-        <CustomTags tag="Youtube" />
-        <CustomTags tag="LinkedIn" />
-        <CustomTags tag="Computer" />
-        <CustomTags tag="Youtube" />
-        <CustomTags tag="LinkedIn" />
-      </div>
-
+    
       {/* Create Button */}
       <div className="flex justify-center p-3">
         <CustomButton Click={AddContent} primary rounded icon={<Plus />}>

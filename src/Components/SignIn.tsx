@@ -15,7 +15,7 @@ export function SignIn() {
 
     
       const response = await axios
-        .post(`${import.meta.env.VITE_baseurl}/Signin`, {
+        .post<any>(`${import.meta.env.VITE_baseurl}/Signin`, {
           email: Email.current?.value,
           password: Password.current?.value,
         });

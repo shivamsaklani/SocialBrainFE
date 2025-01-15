@@ -13,14 +13,14 @@ export function ShareModal({
 }: {
   open: boolean;
 
-  onclose: () => void;
+  onclose:any;
 }) {
-  const [showlink,setlink]=useState();
+  const [showlink,setlink]=useState<string>();
   const [isPublic, setPublic] = useRecoilState(Share);
 
-  const setvisible = async (visible) => {
+  const setvisible = async (visible:boolean) => {
     try {
-      const response= await axios.post(
+      const response= await axios.post<any>(
         `${import.meta.env.VITE_baseurl}/content/share`,
         {
           share: visible,
@@ -49,7 +49,7 @@ export function ShareModal({
 
   const copytext =async()=>{
    try{
-    await window.navigator.clipboard.writeText(showlink);
+    await window.navigator.clipboard.writeText(showlink as string);
 
    }
    catch(e){

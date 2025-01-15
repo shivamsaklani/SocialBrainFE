@@ -1,6 +1,6 @@
 import { atom} from "recoil";
 
-export const create=atom({
+export const create=atom<boolean>({
     key:"modal",
     default:false
 })

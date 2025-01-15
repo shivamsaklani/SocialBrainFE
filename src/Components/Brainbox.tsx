@@ -6,19 +6,23 @@ import { Youtube } from "../icons/Youtube";
 import { Twitter } from "../icons/Twiter";
 import axios from "axios";
 import toast from "react-hot-toast";
-interface BrainProps {
+import { ObjectId } from "mongodb";
+
+export type BrainboxType = "Linkedin" | "Youtube"| "Article" | "Twitter"| "other"; // Example types
+
+export interface BrainProps {
     title:string,
     link:string,
     description:string,
-    deleteid:string,
-   
-    type: "Linkedin" | "Youtube"| "Article" | "Twitter",
+    deleteid:ObjectId,
+    type:BrainboxType ,
 }
 export function Brainbox({title ,link,description ,type,deleteid}:BrainProps){
 
   const Del =async ()=>{
   try {
      const response= await axios.delete(`${import.meta.env.VITE_baseurl}/content/delete`,{
+        //@ts-ignore
         data:{
            contentId:deleteid
         },
@@ -67,7 +71,9 @@ export function Brainbox({title ,link,description ,type,deleteid}:BrainProps){
             </div>
             <div className="" >
               <div className=" flex pt-5 flex-col gap-5 ">
-            { type === "Youtube" && <iframe className="w-full" src={link.replace("watch","embed").replace("?v=","/")} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              
+             
+            { type === "Youtube" && <iframe className="w-full" src={link.replace("watch","embed").replace("?v=","/")} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
           }
             
             
