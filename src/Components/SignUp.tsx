@@ -23,7 +23,7 @@ export function SignUp() {
         toast.success("SignUp Successful");
       }
     } catch (e) {
-      toast("Error occured" +e);
+      toast.error("Oops! Something went wrong. Please try again.");
     }
     finally {
       toast.remove(toastid);

@@ -28,7 +28,7 @@ export function SignIn() {
           localStorage.setItem("token", response.data.token);
         }
     } catch (e) {
-      toast("Error message" + e);
+      toast.error("Oops! Something went wrong. Please try again.");
     }
     finally{
       toast.remove(toastid);
