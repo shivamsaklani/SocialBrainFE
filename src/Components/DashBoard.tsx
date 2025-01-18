@@ -43,6 +43,7 @@ export function DashBoard() {
 
 
   }, [refresh]);
+ 
 
   return (
     <>
@@ -102,7 +103,7 @@ export interface BrainItem {
 }
 export function ContentBox({ Brain }: { Brain: BrainItem[] }) {
   return (
-    <div className="grid  md:grid-cols-3 place-items-center grid-cols-1 w-full  h-full px-3  gap-3 ">
+    <div className="grid  md:grid-cols-3 place-items-center grid-cols-1 w-full  h-max px-3  gap-3 ">
       {Brain.map((item) => (
         <Brainbox
           type={item.type as BrainboxType}

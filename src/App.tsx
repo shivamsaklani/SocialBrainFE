@@ -21,7 +21,7 @@ function App() {
            <Route path="signin" element={<SignIn/>}/>
            <Route path="signup" element={<SignUp/>}/>
            </Route>
-      <Route path="/content/share/*" element={<SharePage/>}/>
+      <Route path="/content/share/:id" element={<SharePage/>}/>
       
          
       
