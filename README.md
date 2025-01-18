@@ -48,3 +48,12 @@ export default tseslint.config({
   },
 })
 ```
+
+
+Backend Url : Put this link in your .env file 
+
+```
+VITE_baseurl="https://socialbrain-roan.vercel.app"
+VITE_frontendurl="http://localhost:5173"
+```
+
