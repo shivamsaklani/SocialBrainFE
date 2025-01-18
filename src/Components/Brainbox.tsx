@@ -7,6 +7,8 @@ import { Twitter } from "../icons/Twiter";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { ObjectId } from "mongodb";
+import { Iconlink } from "../icons/Iconlinks";
+import { Link } from "react-router-dom";
 
 export type BrainboxType = "Linkedin" | "Youtube"| "Article" | "Twitter"| "other"; // Example types
 
@@ -17,7 +19,7 @@ export interface BrainProps {
     deleteid:ObjectId,
     type:BrainboxType ,
 }
-export function Brainbox({title ,link,description ,type,deleteid}:BrainProps){
+export function Brainbox({title ,link,description,type,deleteid}:BrainProps){
 
   const Del =async ()=>{
   try {
@@ -64,7 +66,7 @@ export function Brainbox({title ,link,description ,type,deleteid}:BrainProps){
                   </div>
                
                   <div className=" px-3 cursor-pointer text-primary ">
-                    <ShareIcon/>
+                   <a href={link}>  <Iconlink/></a>
                   </div>
                 
                 </span>

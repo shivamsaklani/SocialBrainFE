@@ -26,7 +26,6 @@ export function Sidebar({show}:{
           <SideIcon icon={<Twitter />} title="Twitter" />
           <SideIcon icon={<Youtube />} title="Youtube" />
           <SideIcon icon={<LinkedIn />} title="LinkedIn" />
-          <SideIcon icon={<Tags />} title="Tags" />
         </div>
         <div onClick={show} className="justify-center gap-2 hover:bg-secondary transition ease-in text-white  duration-800 bg-gray  rounded-md px-3 py-3 cursor-pointer flex items-center">
           <span  className="font-title text-white">Logout </span> <Logout  />
