@@ -8,7 +8,7 @@ import { ShareIcon } from "../icons/Share";
 import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { create, DataContent } from "../Global/Global";
+import { create, Refresh } from "../Global/Global";
 import { ObjectId } from "mongodb";
 import { ShareModal } from "./ShareModal";
 import { Logoutfun } from "./Logout";
@@ -27,8 +27,8 @@ export function DashBoard() {
    
   }
 
-  const [Brain, setBrain] = useRecoilState(DataContent);
-  const data=useRecoilValue(DataContent);
+  const [Brain, setBrain] = useState([]);
+  const refresh=useRecoilValue(Refresh);
   useEffect(() => {
     const fetch = async () => {
       const response= await axios.get<any>(`${import.meta.env.VITE_baseurl}/content/get`, {
@@ -42,7 +42,7 @@ export function DashBoard() {
     fetch();
 
 
-  }, [data]);
+  }, [refresh]);
 
   return (
     <>

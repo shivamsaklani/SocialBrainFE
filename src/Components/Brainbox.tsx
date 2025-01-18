@@ -1,5 +1,4 @@
 
-import { ShareIcon } from "../icons/Share";
 import { Delete } from "../icons/Delete";
 import { LinkedIn } from "../icons/LinkedIn";
 import { Youtube } from "../icons/Youtube";
@@ -8,7 +7,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { ObjectId } from "mongodb";
 import { Iconlink } from "../icons/Iconlinks";
-import { Link } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { Refresh } from "../Global/Global";
 
 export type BrainboxType = "Linkedin" | "Youtube"| "Article" | "Twitter"| "other"; // Example types
 
@@ -21,6 +21,7 @@ export interface BrainProps {
 }
 export function Brainbox({title ,link,description,type,deleteid}:BrainProps){
 
+  const trigger = useSetRecoilState(Refresh);
   const Del =async ()=>{
   try {
      const response= await axios.delete(`${import.meta.env.VITE_baseurl}/content/delete`,{
@@ -36,6 +37,7 @@ export function Brainbox({title ,link,description,type,deleteid}:BrainProps){
       });
       if(response.status ===201){
         toast.success("Item Deleted");
+        trigger ((prev)=>prev+1);
       }
   } catch (e) {
     toast.error("Error occured"+e);

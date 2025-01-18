@@ -10,7 +10,7 @@ export const Share=atom({
     default:false
 })
 
-export const DataContent=atom({
-    key:"data",
-    default:[]
+export const Refresh=atom({
+    key:"DataTrigger",
+    default:0,
 })

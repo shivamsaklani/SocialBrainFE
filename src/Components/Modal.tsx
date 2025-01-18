@@ -5,7 +5,7 @@ import { CustomButton } from "./Button";
 import { Inputbox } from "./Inputbox";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { create } from "../Global/Global";
+import { create, Refresh } from "../Global/Global";
 import { useSetRecoilState } from "recoil";
 export function Modal({open,onClose}:{
   open:boolean,
@@ -16,6 +16,7 @@ export function Modal({open,onClose}:{
     const Description= useRef<HTMLTextAreaElement>(null);
     const Type =useRef<HTMLSelectElement>(null);
     const setmodal=useSetRecoilState(create);
+    const trigger = useSetRecoilState(Refresh);
 
     const AddContent= async () =>{
       try {
@@ -37,6 +38,8 @@ export function Modal({open,onClose}:{
           });
           if(response.status ===201){
             toast.success("Content Added ");
+
+            trigger ((p)=>p+1);
             
             setmodal(false);
 
